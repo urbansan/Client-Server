@@ -1,0 +1,79 @@
+\hypertarget{serwerIP_8c}{\section{serwer\+I\+P.\+c File Reference}
+\label{serwerIP_8c}\index{serwer\+I\+P.\+c@{serwer\+I\+P.\+c}}
+}
+
+
+Header file for project.  
+
+
+{\ttfamily \#include \char`\"{}serwer\+I\+P.\+h\char`\"{}}\\*
+Include dependency graph for serwer\+I\+P.\+c\+:
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{serwerIP_8c_a8c6493b2076b8769bc2eac4d60de8c68}{\#define {\bfseries C\+O\+P\+Y\+M\+O\+D\+E}~0664}\label{serwerIP_8c_a8c6493b2076b8769bc2eac4d60de8c68}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{serwerIP_8c_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+\hypertarget{serwerIP_8c_a6ef5d1cb6bd3a004e3a89f1d8cd3fb5a}{void $\ast$ {\bfseries thread\+Function} (void $\ast$arg)}\label{serwerIP_8c_a6ef5d1cb6bd3a004e3a89f1d8cd3fb5a}
+
+\item 
+void \hyperlink{serwerIP_8c_ad7394f7f1a81d96c59c8a5a91853888f}{send\+List} (int comm\+\_\+fd)
+\begin{DoxyCompactList}\small\item\em Creates a connection\+\_\+specific file in \char`\"{}user\+Specific\char`\"{} folder based on the I\+P address. \end{DoxyCompactList}\item 
+\hypertarget{serwerIP_8c_a5b49f791b9144469d6e2eacf87103b3a}{int {\bfseries React\+To\+Option} (int comm\+\_\+fd)}\label{serwerIP_8c_a5b49f791b9144469d6e2eacf87103b3a}
+
+\item 
+\hypertarget{serwerIP_8c_a23542ee6dfd9e1a97501a2c65a518f4a}{int {\bfseries save\+Lista\+To\+File} (char $\ast$lista\mbox{[}$\,$\mbox{]}, char $\ast$filename)}\label{serwerIP_8c_a23542ee6dfd9e1a97501a2c65a518f4a}
+
+\item 
+\hypertarget{serwerIP_8c_ae3c777677af5e7dc5c9602b4480eb0c1}{int {\bfseries read\+Shared\+Dir} (char $\ast$lista\mbox{[}$\,$\mbox{]})}\label{serwerIP_8c_ae3c777677af5e7dc5c9602b4480eb0c1}
+
+\item 
+\hypertarget{serwerIP_8c_a49ef58aae07889b48b8c299fde42e942}{int {\bfseries create\+Listening\+Socket} (struct sockaddr\+\_\+in $\ast$serwer\+\_\+sockaddr, int port)}\label{serwerIP_8c_a49ef58aae07889b48b8c299fde42e942}
+
+\item 
+\hypertarget{serwerIP_8c_a52e7bb61e24f994fff50a7672db34812}{int {\bfseries copy\+\_\+file2fd} (char $\ast$path, int upload\+\_\+fd)}\label{serwerIP_8c_a52e7bb61e24f994fff50a7672db34812}
+
+\item 
+\hypertarget{serwerIP_8c_a7fb252b18a64a534c71e75356aa6329b}{int {\bfseries copy\+\_\+fd2file} (int download\+\_\+fd, char $\ast$path)}\label{serwerIP_8c_a7fb252b18a64a534c71e75356aa6329b}
+
+\item 
+\hypertarget{serwerIP_8c_a383bb539e1d37f8a27388fce406658a3}{void {\bfseries cp} (int fd1, int fd2)}\label{serwerIP_8c_a383bb539e1d37f8a27388fce406658a3}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Header file for project. 
+
+inne roznosci 
+
+\subsection{Function Documentation}
+\hypertarget{serwerIP_8c_a0ddf1224851353fc92bfbff6f499fa97}{\index{serwer\+I\+P.\+c@{serwer\+I\+P.\+c}!main@{main}}
+\index{main@{main}!serwer\+I\+P.\+c@{serwer\+I\+P.\+c}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}}\label{serwerIP_8c_a0ddf1224851353fc92bfbff6f499fa97}
+just a header with swift shit \hypertarget{serwerIP_8c_ad7394f7f1a81d96c59c8a5a91853888f}{\index{serwer\+I\+P.\+c@{serwer\+I\+P.\+c}!send\+List@{send\+List}}
+\index{send\+List@{send\+List}!serwer\+I\+P.\+c@{serwer\+I\+P.\+c}}
+\subsubsection[{send\+List}]{\setlength{\rightskip}{0pt plus 5cm}void send\+List (
+\begin{DoxyParamCaption}
+\item[{int}]{comm\+\_\+fd}
+\end{DoxyParamCaption}
+)}}\label{serwerIP_8c_ad7394f7f1a81d96c59c8a5a91853888f}
+
+
+Creates a connection\+\_\+specific file in \char`\"{}user\+Specific\char`\"{} folder based on the I\+P address. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em comm\+\_\+fd} & socket file descriptor \\
+\hline
+\end{DoxyParams}

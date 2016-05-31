@@ -1,0 +1,268 @@
+\hypertarget{serwerIP_8h}{\section{Dokumentacja pliku serwer\+I\+P.\+h}
+\label{serwerIP_8h}\index{serwer\+I\+P.\+h@{serwer\+I\+P.\+h}}
+}
+
+
+Plik nagłówkowy.  
+
+
+{\ttfamily \#include $<$netdb.\+h$>$}\\*
+{\ttfamily \#include $<$dirent.\+h$>$}\\*
+{\ttfamily \#include $<$pthread.\+h$>$}\\*
+Wykres zależności załączania dla serwer\+I\+P.\+h\+:
+\subsection*{Definicje}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{serwerIP_8h_adbe27079894896e6a92ded57db294068}{\#define \hyperlink{serwerIP_8h_adbe27079894896e6a92ded57db294068}{M\+A\+X\+K\+O\+L\+E\+J\+K\+A}~5}\label{serwerIP_8h_adbe27079894896e6a92ded57db294068}
+
+\begin{DoxyCompactList}\small\item\em Maksymalna kolejnka nasłuchiwanych przez gniazdo nasłuchujące. \end{DoxyCompactList}\item 
+\hypertarget{serwerIP_8h_a4060055ee7f8a73b71e956e0034e96d5}{\#define \hyperlink{serwerIP_8h_a4060055ee7f8a73b71e956e0034e96d5}{B\+U\+F\+W\+E}~80}\label{serwerIP_8h_a4060055ee7f8a73b71e956e0034e96d5}
+
+\begin{DoxyCompactList}\small\item\em Rozmiar bufora dla przesyłanych Stringów -\/ nazw plików. \end{DoxyCompactList}\item 
+\hypertarget{serwerIP_8h_ac3146f1e9227301bb4aa518f4d336cee}{\#define \hyperlink{serwerIP_8h_ac3146f1e9227301bb4aa518f4d336cee}{B\+U\+F\+F\+E\+R\+S\+I\+Z\+E}~4096}\label{serwerIP_8h_ac3146f1e9227301bb4aa518f4d336cee}
+
+\begin{DoxyCompactList}\small\item\em Rozmiar bufora przesyłu danych (download, upload). \end{DoxyCompactList}\item 
+\hypertarget{serwerIP_8h_a8c6493b2076b8769bc2eac4d60de8c68}{\#define \hyperlink{serwerIP_8h_a8c6493b2076b8769bc2eac4d60de8c68}{C\+O\+P\+Y\+M\+O\+D\+E}~0664}\label{serwerIP_8h_a8c6493b2076b8769bc2eac4d60de8c68}
+
+\begin{DoxyCompactList}\small\item\em Prawa dostępu dla tworzonych plików. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Funkcje}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{serwerIP_8h_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Główna funkcja serwera. \end{DoxyCompactList}\item 
+int \hyperlink{serwerIP_8h_a513293664513fa3d57f372b7999498e1}{create\+Listening\+Socket} (struct sockaddr\+\_\+in $\ast$serwer\+\_\+sockaddr, int port)
+\item 
+void $\ast$ \hyperlink{serwerIP_8h_ad8f02da697aa751e5afa01d088b9cacd}{thread\+Function} (void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Funkcja wątku osbługująca klienta. \end{DoxyCompactList}\item 
+int \hyperlink{serwerIP_8h_a1be33f420d9757fcece012824321713a}{React\+To\+Option} (int comm\+\_\+fd)
+\begin{DoxyCompactList}\small\item\em Funkcja interpretująca komunikaty od klienta. \end{DoxyCompactList}\item 
+void \hyperlink{serwerIP_8h_ad7394f7f1a81d96c59c8a5a91853888f}{send\+List} (int comm\+\_\+fd)
+\begin{DoxyCompactList}\small\item\em Tworzy listę plików serwera i wysyła ją do klienta. \end{DoxyCompactList}\item 
+int \hyperlink{serwerIP_8h_af6d9b307562c71e82d8098526afbb1e7}{read\+Shared\+Dir} (char $\ast$lista\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Zapisuje do tablicy stringów {\itshape lista} listę plików z katalogu {\itshape \char`\"{}/shared\char`\"{}}. Wykorzystuje ją \hyperlink{serwerIP_8h_ad7394f7f1a81d96c59c8a5a91853888f}{send\+List()}. \end{DoxyCompactList}\item 
+int \hyperlink{serwerIP_8h_a23542ee6dfd9e1a97501a2c65a518f4a}{save\+Lista\+To\+File} (char $\ast$lista\mbox{[}$\,$\mbox{]}, char $\ast$filename)
+\begin{DoxyCompactList}\small\item\em Zapisuje listę stringów do pliku {\itshape \char`\"{}/shared/filename\char`\"{}}. wykorzystuje ją \hyperlink{serwerIP_8h_ad7394f7f1a81d96c59c8a5a91853888f}{send\+List()}. \end{DoxyCompactList}\item 
+int \hyperlink{serwerIP_8h_a6f537a06011d73acc72abd4fe93fcbc4}{copy\+\_\+file2fd} (char $\ast$path, int fd\+\_\+target)
+\begin{DoxyCompactList}\small\item\em Tworzy deskryptor scieżki {\itshape path} i kopiuje zawartość do deskryptora celu. Oba deskryptory są zamykane. \end{DoxyCompactList}\item 
+int \hyperlink{serwerIP_8h_a5684a4b681d23ab657af5bd43b04c9c8}{copy\+\_\+fd2file} (int fd\+\_\+source, char $\ast$path)
+\begin{DoxyCompactList}\small\item\em Tworzy deskryptor scieżki {\itshape path} i kopiuje zawartość z deskryptora źródła. Oba deskryptory są zamykane. \end{DoxyCompactList}\item 
+void \hyperlink{serwerIP_8h_a383bb539e1d37f8a27388fce406658a3}{cp} (int fd1, int fd2)
+\begin{DoxyCompactList}\small\item\em Kopiuje dane wykorzystując descryptory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Opis szczegółowy}
+Plik nagłówkowy. 
+
+Plik zawiera spis stworzonych funkcji, makr oraz pozastandarodwych bibliotek wykorzystanych przez projekt. 
+
+\subsection{Dokumentacja funkcji}
+\hypertarget{serwerIP_8h_a5684a4b681d23ab657af5bd43b04c9c8}{\index{serwer\+I\+P.\+h@{serwer\+I\+P.\+h}!copy\+\_\+fd2file@{copy\+\_\+fd2file}}
+\index{copy\+\_\+fd2file@{copy\+\_\+fd2file}!serwer\+I\+P.\+h@{serwer\+I\+P.\+h}}
+\subsubsection[{copy\+\_\+fd2file}]{\setlength{\rightskip}{0pt plus 5cm}int copy\+\_\+fd2file (
+\begin{DoxyParamCaption}
+\item[{int}]{fd\+\_\+source, }
+\item[{char $\ast$}]{path}
+\end{DoxyParamCaption}
+)}}\label{serwerIP_8h_a5684a4b681d23ab657af5bd43b04c9c8}
+
+
+Tworzy deskryptor scieżki {\itshape path} i kopiuje zawartość z deskryptora źródła. Oba deskryptory są zamykane. 
+
+
+\begin{DoxyParams}{Parametry}
+{\em fd\+\_\+source} & -\/ deskryptor źródła, zazwyczaj deskryptor gniazda komunikacyjnego. \\
+\hline
+{\em path} & -\/ ścieżka do pliku. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Zwraca}
+0 on success. 
+\end{DoxyReturn}
+\hypertarget{serwerIP_8h_a6f537a06011d73acc72abd4fe93fcbc4}{\index{serwer\+I\+P.\+h@{serwer\+I\+P.\+h}!copy\+\_\+file2fd@{copy\+\_\+file2fd}}
+\index{copy\+\_\+file2fd@{copy\+\_\+file2fd}!serwer\+I\+P.\+h@{serwer\+I\+P.\+h}}
+\subsubsection[{copy\+\_\+file2fd}]{\setlength{\rightskip}{0pt plus 5cm}int copy\+\_\+file2fd (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{path, }
+\item[{int}]{fd\+\_\+target}
+\end{DoxyParamCaption}
+)}}\label{serwerIP_8h_a6f537a06011d73acc72abd4fe93fcbc4}
+
+
+Tworzy deskryptor scieżki {\itshape path} i kopiuje zawartość do deskryptora celu. Oba deskryptory są zamykane. 
+
+
+\begin{DoxyParams}{Parametry}
+{\em path} & -\/ ścieżka do pliku. \\
+\hline
+{\em fd\+\_\+target} & -\/ deskryptor celu, zazwyczaj deskryptor gniazda komunikacyjnego. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Zwraca}
+0 on success. 
+\end{DoxyReturn}
+\hypertarget{serwerIP_8h_a383bb539e1d37f8a27388fce406658a3}{\index{serwer\+I\+P.\+h@{serwer\+I\+P.\+h}!cp@{cp}}
+\index{cp@{cp}!serwer\+I\+P.\+h@{serwer\+I\+P.\+h}}
+\subsubsection[{cp}]{\setlength{\rightskip}{0pt plus 5cm}void cp (
+\begin{DoxyParamCaption}
+\item[{int}]{fd1, }
+\item[{int}]{fd2}
+\end{DoxyParamCaption}
+)}}\label{serwerIP_8h_a383bb539e1d37f8a27388fce406658a3}
+
+
+Kopiuje dane wykorzystując descryptory. 
+
+
+\begin{DoxyParams}{Parametry}
+{\em fd1} & -\/ deskryptor strumienia kopiowanego. \\
+\hline
+{\em fd2} & -\/ deskryptor strumienia zapisywanego. \\
+\hline
+\end{DoxyParams}
+\hypertarget{serwerIP_8h_a513293664513fa3d57f372b7999498e1}{\index{serwer\+I\+P.\+h@{serwer\+I\+P.\+h}!create\+Listening\+Socket@{create\+Listening\+Socket}}
+\index{create\+Listening\+Socket@{create\+Listening\+Socket}!serwer\+I\+P.\+h@{serwer\+I\+P.\+h}}
+\subsubsection[{create\+Listening\+Socket}]{\setlength{\rightskip}{0pt plus 5cm}create\+Listening\+Socket (
+\begin{DoxyParamCaption}
+\item[{struct sockaddr\+\_\+in $\ast$}]{serwer\+\_\+sockaddr, }
+\item[{int}]{port}
+\end{DoxyParamCaption}
+)}}\label{serwerIP_8h_a513293664513fa3d57f372b7999498e1}
+
+\begin{DoxyParams}{Parametry}
+{\em serwer\+\_\+sockaddr} & -\/ wskażnik do struktury adresowej. \\
+\hline
+{\em port} & -\/ port przyjmowania zgłoszeń. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Zwraca}
+Zwraca deskryptor gniazda nasłuchującego. 
+\end{DoxyReturn}
+\hypertarget{serwerIP_8h_a0ddf1224851353fc92bfbff6f499fa97}{\index{serwer\+I\+P.\+h@{serwer\+I\+P.\+h}!main@{main}}
+\index{main@{main}!serwer\+I\+P.\+h@{serwer\+I\+P.\+h}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}}\label{serwerIP_8h_a0ddf1224851353fc92bfbff6f499fa97}
+
+
+Główna funkcja serwera. 
+
+int \hyperlink{serwerIP_8h_a0ddf1224851353fc92bfbff6f499fa97}{main(int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})}; 
+\begin{DoxyParams}{Parametry}
+{\em argv\mbox{[}1\mbox{]}} & -\/ Port nasłuchujący.\\
+\hline
+\end{DoxyParams}
+Tworzy gniazdo nasłuchujące i przyjmuje kolejnych klientów. Obsługa zapytań jest wykonywana w nastepujący sposób\+:
+\begin{DoxyEnumerate}
+\item Tworzenie gniazda komunikacyjnego klienta i przekazania go do odrębnego wątku.
+\item Uruchomienie funkcji wątku \hyperlink{serwerIP_8h_ad8f02da697aa751e5afa01d088b9cacd}{thread\+Function()}.
+\item Zamykanie gniazda.
+\end{DoxyEnumerate}
+
+Każde gniazdo żyje raz na daną opcja dla jednego klienta. \begin{DoxyReturn}{Zwraca}
+0 on success. 
+\end{DoxyReturn}
+\hypertarget{serwerIP_8h_a1be33f420d9757fcece012824321713a}{\index{serwer\+I\+P.\+h@{serwer\+I\+P.\+h}!React\+To\+Option@{React\+To\+Option}}
+\index{React\+To\+Option@{React\+To\+Option}!serwer\+I\+P.\+h@{serwer\+I\+P.\+h}}
+\subsubsection[{React\+To\+Option}]{\setlength{\rightskip}{0pt plus 5cm}React\+To\+Option (
+\begin{DoxyParamCaption}
+\item[{int}]{comm\+\_\+fd}
+\end{DoxyParamCaption}
+)}}\label{serwerIP_8h_a1be33f420d9757fcece012824321713a}
+
+
+Funkcja interpretująca komunikaty od klienta. 
+
+
+\begin{DoxyParams}{Parametry}
+{\em comm\+\_\+fd} & -\/ gniazdo komunikacyjne\\
+\hline
+\end{DoxyParams}
+Funkcja komunikuje się z klientem w 4ch etapach\+:
+\begin{DoxyEnumerate}
+\item Odbiór czynności, którą chce wykonać klient (send list, download, upload, delete file, close connection).
+\item Dla opcji upload i download odbiera od klienta nazwę pliku i uwzględnia błędne przesłanie nazwy pliku.
+\item Dla opcji {\itshape upload}, {\itshape download} oraz {\itshape send} {\itshape list} wybiera odpowiednią funkcję kopiującą do/ zapisującą z strumienia.
+\end{DoxyEnumerate}
+
+Opcja {\itshape close} {\itshape connection} jest wybierana w przypadku nie wybrania żadnych z wyżej wymienionych. \begin{DoxyReturn}{Zwraca}
+0 on success. 
+\end{DoxyReturn}
+\hypertarget{serwerIP_8h_af6d9b307562c71e82d8098526afbb1e7}{\index{serwer\+I\+P.\+h@{serwer\+I\+P.\+h}!read\+Shared\+Dir@{read\+Shared\+Dir}}
+\index{read\+Shared\+Dir@{read\+Shared\+Dir}!serwer\+I\+P.\+h@{serwer\+I\+P.\+h}}
+\subsubsection[{read\+Shared\+Dir}]{\setlength{\rightskip}{0pt plus 5cm}void read\+Shared\+Dir (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{lista\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}}\label{serwerIP_8h_af6d9b307562c71e82d8098526afbb1e7}
+
+
+Zapisuje do tablicy stringów {\itshape lista} listę plików z katalogu {\itshape \char`\"{}/shared\char`\"{}}. Wykorzystuje ją \hyperlink{serwerIP_8h_ad7394f7f1a81d96c59c8a5a91853888f}{send\+List()}. 
+
+
+\begin{DoxyParams}{Parametry}
+{\em $\ast$lista\mbox{[}$\,$\mbox{]}} & -\/ tablica stringów. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Zwraca}
+0 on success. 
+\end{DoxyReturn}
+\hypertarget{serwerIP_8h_a23542ee6dfd9e1a97501a2c65a518f4a}{\index{serwer\+I\+P.\+h@{serwer\+I\+P.\+h}!save\+Lista\+To\+File@{save\+Lista\+To\+File}}
+\index{save\+Lista\+To\+File@{save\+Lista\+To\+File}!serwer\+I\+P.\+h@{serwer\+I\+P.\+h}}
+\subsubsection[{save\+Lista\+To\+File}]{\setlength{\rightskip}{0pt plus 5cm}int save\+Lista\+To\+File (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{lista\mbox{[}$\,$\mbox{]}, }
+\item[{char $\ast$}]{filename}
+\end{DoxyParamCaption}
+)}}\label{serwerIP_8h_a23542ee6dfd9e1a97501a2c65a518f4a}
+
+
+Zapisuje listę stringów do pliku {\itshape \char`\"{}/shared/filename\char`\"{}}. wykorzystuje ją \hyperlink{serwerIP_8h_ad7394f7f1a81d96c59c8a5a91853888f}{send\+List()}. 
+
+
+\begin{DoxyParams}{Parametry}
+{\em $\ast$lista\mbox{[}$\,$\mbox{]}} & -\/ tablica stringów z listą katalogów. \\
+\hline
+{\em $\ast$filename\mbox{[}$\,$\mbox{]}} & -\/ scieżka względna do pliku z listą. \\
+\hline
+\end{DoxyParams}
+\hypertarget{serwerIP_8h_ad7394f7f1a81d96c59c8a5a91853888f}{\index{serwer\+I\+P.\+h@{serwer\+I\+P.\+h}!send\+List@{send\+List}}
+\index{send\+List@{send\+List}!serwer\+I\+P.\+h@{serwer\+I\+P.\+h}}
+\subsubsection[{send\+List}]{\setlength{\rightskip}{0pt plus 5cm}void send\+List (
+\begin{DoxyParamCaption}
+\item[{int}]{comm\+\_\+fd}
+\end{DoxyParamCaption}
+)}}\label{serwerIP_8h_ad7394f7f1a81d96c59c8a5a91853888f}
+
+
+Tworzy listę plików serwera i wysyła ją do klienta. 
+
+
+\begin{DoxyParams}{Parametry}
+{\em comm\+\_\+fd} & deskryptor gniazda.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyEnumerate}
+\item Tworzy plik specyficzny dla każdego klienta opartego na jego adresie I\+P i zapisuje go do katalogu {\itshape \char`\"{}/user\+Specific\char`\"{}}.
+\item Do pliku zapisuje listę plików udostępnianych z katalogu ./shared/.
+\item Wysyła plik do klienta. 
+\end{DoxyEnumerate}\hypertarget{serwerIP_8h_ad8f02da697aa751e5afa01d088b9cacd}{\index{serwer\+I\+P.\+h@{serwer\+I\+P.\+h}!thread\+Function@{thread\+Function}}
+\index{thread\+Function@{thread\+Function}!serwer\+I\+P.\+h@{serwer\+I\+P.\+h}}
+\subsubsection[{thread\+Function}]{\setlength{\rightskip}{0pt plus 5cm}void $\ast$ thread\+Function (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{arg}
+\end{DoxyParamCaption}
+)}}\label{serwerIP_8h_ad8f02da697aa751e5afa01d088b9cacd}
+
+
+Funkcja wątku osbługująca klienta. 
+
+
+\begin{DoxyParams}{Parametry}
+{\em arg} & -\/ deskryptor gniazda komunikacyjnego.\\
+\hline
+\end{DoxyParams}
+Przechodzi w stan odłączenia (detached) oraz wykonuje funkcję {\itshape React\+To\+Option}. Zamyka deskryptor gniazda komunikacyjnego za pomocą funkcji {\itshape shutdown()}. 

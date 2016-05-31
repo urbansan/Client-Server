@@ -1,0 +1,213 @@
+\hypertarget{classTCPshareClient}{\section{Dokumentacja klasy T\+C\+Pshare\+Client}
+\label{classTCPshareClient}\index{T\+C\+Pshare\+Client@{T\+C\+Pshare\+Client}}
+}
+
+
+Końcowa implementacja klienta.  
+
+
+
+
+Diagram dziedziczenia dla T\+C\+Pshare\+Client
+
+
+Diagram współpracy dla T\+C\+Pshare\+Client\+:
+\subsection*{Metody publiczne}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classTCPshareClient_a10cdc0a57a837e03075272e5066bdf77}{{\bfseries T\+C\+Pshare\+Client} (int port, String server)}\label{classTCPshareClient_a10cdc0a57a837e03075272e5066bdf77}
+
+\item 
+int \hyperlink{classTCPshareClient_a59c2ec1caa18e5081192925e91f9717e}{start\+Service} ()  throws I\+O\+Exception 
+\begin{DoxyCompactList}\small\item\em Metoda nawiązujaca połączenie i przekazująca połączenie do poniższych metod. \end{DoxyCompactList}\item 
+int \hyperlink{classTCPshareClient_a33bb90418d922955e2c86ae857e9dcea}{Act\+An\+Option} (Socket sock)  throws I\+O\+Exception 
+\begin{DoxyCompactList}\small\item\em Główna metoda obsługująca połączenie z serwerem. \end{DoxyCompactList}\item 
+void \hyperlink{classTCPshareClient_a4d9936ebefa607fe1d3d3efef79b5e40}{get\+Remote\+File\+List} (Socket sock)
+\begin{DoxyCompactList}\small\item\em Odbiera plik z lista plików z serwera, interpretuje i wczytuje do pamięci. \end{DoxyCompactList}\item 
+void \hyperlink{classTCPshareClient_a919fae8dbdeda86954c85230283be904}{get\+Local\+File\+List} ()
+\begin{DoxyCompactList}\small\item\em Pobiera listę udostępnianych plików z katalogu {\itshape \char`\"{}shared\+\_\+java\char`\"{}}. \end{DoxyCompactList}\item 
+void \hyperlink{classTCPshareClient_a90c2aa41a958d8e110ee9032577a1d87}{show\+Availabe\+Files} (Socket sock)
+\begin{DoxyCompactList}\small\item\em Metoda zestawia pliki dostępne na serwerze z lokalnymi plikami z katalogu c\+:. \end{DoxyCompactList}\item 
+void \hyperlink{classTCPshareClient_a4af6bd36674c0e92f5f49bac5b8759db}{check\+If\+Overwriting\+Files} (String position, String option)  throws jabelko 
+\begin{DoxyCompactList}\small\item\em Sprawdza, czy wybrana opcja {\itshape download/upload} może spowodować nadpisanie wybranego pliku po drugiej stronie połączenia. \end{DoxyCompactList}\item 
+void \hyperlink{classTCPshareClient_a135dc6442a96424278e417648b4ee630}{download\+File} (String filename, Socket sock)  throws I\+O\+Exception 
+\begin{DoxyCompactList}\small\item\em Pobiera plik {\itshape filename} korzystając z połączonego gniazda {\itshape sock}. \end{DoxyCompactList}\item 
+void \hyperlink{classTCPshareClient_aa7ac62bdba79edd0a576129ec7758b7c}{upload\+File} (String filename, Socket sock)  throws I\+O\+Exception 
+\begin{DoxyCompactList}\small\item\em Wysyła plik {\itshape filename} przez gniazdo sock. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Opis szczegółowy}
+Końcowa implementacja klienta. 
+
+\subsection{Dokumentacja funkcji składowych}
+\hypertarget{classTCPshareClient_a33bb90418d922955e2c86ae857e9dcea}{\index{T\+C\+Pshare\+Client@{T\+C\+Pshare\+Client}!Act\+An\+Option@{Act\+An\+Option}}
+\index{Act\+An\+Option@{Act\+An\+Option}!T\+C\+Pshare\+Client@{T\+C\+Pshare\+Client}}
+\subsubsection[{Act\+An\+Option}]{\setlength{\rightskip}{0pt plus 5cm}int T\+C\+Pshare\+Client.\+Act\+An\+Option (
+\begin{DoxyParamCaption}
+\item[{Socket}]{sock}
+\end{DoxyParamCaption}
+) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}}\label{classTCPshareClient_a33bb90418d922955e2c86ae857e9dcea}
+
+
+Główna metoda obsługująca połączenie z serwerem. 
+
+
+\begin{DoxyParams}{Parametry}
+{\em sock} & -\/ gniazdo połączeniowe.\\
+\hline
+\end{DoxyParams}
+Opcje dostępne\+: download, upload, usuniecie pliku na serwerze, wyswietlenie listy plikow na serwerze, usuniecie danych specyficznych klienta.
+
+Opcja download\+: Klient\+: nawiązanie połączenia Serwer\+: akceptacja, nadanie gniazda klient\+: przesłanie nr opcje download (int) serwer\+: przyjmuje opcję i przechodzi do czesci zwiazanej z opcja download klient\+: przesyła nazwę pliku (string) serwer\+: odbiera nazwę pliku, rozpoczyna jego strumieniowanie i zamyka połączenie klient\+: odbiera strumien i zamyka polaczenie.
+
+Opcja upload jest analogiczna. Opcja Send List pomija etap weryfikacji nazwy pliku, ktora jest stała. Opcja usunięcia pliku weryfikuje nazwe pliku, ale pomija przesyłanie danych. \begin{DoxyReturn}{Zwraca}
+-\/1, gdy zostaną błędnie wybrane opcje lub użytkownik chce zamknąć aplikacje. 
+\end{DoxyReturn}
+\hypertarget{classTCPshareClient_a4af6bd36674c0e92f5f49bac5b8759db}{\index{T\+C\+Pshare\+Client@{T\+C\+Pshare\+Client}!check\+If\+Overwriting\+Files@{check\+If\+Overwriting\+Files}}
+\index{check\+If\+Overwriting\+Files@{check\+If\+Overwriting\+Files}!T\+C\+Pshare\+Client@{T\+C\+Pshare\+Client}}
+\subsubsection[{check\+If\+Overwriting\+Files}]{\setlength{\rightskip}{0pt plus 5cm}void T\+C\+Pshare\+Client.\+check\+If\+Overwriting\+Files (
+\begin{DoxyParamCaption}
+\item[{String}]{position, }
+\item[{String}]{option}
+\end{DoxyParamCaption}
+) throws jabelko\hspace{0.3cm}{\ttfamily [inline]}}}\label{classTCPshareClient_a4af6bd36674c0e92f5f49bac5b8759db}
+
+
+Sprawdza, czy wybrana opcja {\itshape download/upload} może spowodować nadpisanie wybranego pliku po drugiej stronie połączenia. 
+
+
+\begin{DoxyParams}{Parametry}
+{\em position} & -\/ numeryczny identyfikator pliku z danej listy. \\
+\hline
+{\em option} & -\/ literał określający, którą listę należy przejrzeć. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Wyjątki}
+{\em jabelko} & -\/ wyjątek zawiera wartość {\itshape boolean} {\itshape is\+Overwrite}, która przyjmuje wartość {\itshape T\+R\+U\+E}, kiedy w wyniku wybranej operacji zostanie nadpisany wybrany plik. Przyjmuje wartość {\itshape F\+A\+L\+S\+E} w przeciwnym wypadku. \\
+\hline
+\end{DoxyExceptions}
+
+
+Implementuje \hyperlink{interfacesharedClientMethods_a49cf4dd0c572b0cd6bab672f3f50217f}{shared\+Client\+Methods}.
+
+\hypertarget{classTCPshareClient_a135dc6442a96424278e417648b4ee630}{\index{T\+C\+Pshare\+Client@{T\+C\+Pshare\+Client}!download\+File@{download\+File}}
+\index{download\+File@{download\+File}!T\+C\+Pshare\+Client@{T\+C\+Pshare\+Client}}
+\subsubsection[{download\+File}]{\setlength{\rightskip}{0pt plus 5cm}void T\+C\+Pshare\+Client.\+download\+File (
+\begin{DoxyParamCaption}
+\item[{String}]{filename, }
+\item[{Socket}]{sock}
+\end{DoxyParamCaption}
+) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}}\label{classTCPshareClient_a135dc6442a96424278e417648b4ee630}
+
+
+Pobiera plik {\itshape filename} korzystając z połączonego gniazda {\itshape sock}. 
+
+
+\begin{DoxyParams}{Parametry}
+{\em filename} & -\/ nazwa ściąganego pliku. \\
+\hline
+{\em sock} & -\/ gniazdo połączeniowe. \\
+\hline
+\end{DoxyParams}
+
+
+Implementuje \hyperlink{interfacesharedClientMethods_af4a509307d09d62da7143e789e638b27}{shared\+Client\+Methods}.
+
+\hypertarget{classTCPshareClient_a919fae8dbdeda86954c85230283be904}{\index{T\+C\+Pshare\+Client@{T\+C\+Pshare\+Client}!get\+Local\+File\+List@{get\+Local\+File\+List}}
+\index{get\+Local\+File\+List@{get\+Local\+File\+List}!T\+C\+Pshare\+Client@{T\+C\+Pshare\+Client}}
+\subsubsection[{get\+Local\+File\+List}]{\setlength{\rightskip}{0pt plus 5cm}void T\+C\+Pshare\+Client.\+get\+Local\+File\+List (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classTCPshareClient_a919fae8dbdeda86954c85230283be904}
+
+
+Pobiera listę udostępnianych plików z katalogu {\itshape \char`\"{}shared\+\_\+java\char`\"{}}. 
+
+
+
+Implementuje \hyperlink{interfacesharedClientMethods_ad4f4e6a9a9103dc4684a72cad791c6db}{shared\+Client\+Methods}.
+
+\hypertarget{classTCPshareClient_a4d9936ebefa607fe1d3d3efef79b5e40}{\index{T\+C\+Pshare\+Client@{T\+C\+Pshare\+Client}!get\+Remote\+File\+List@{get\+Remote\+File\+List}}
+\index{get\+Remote\+File\+List@{get\+Remote\+File\+List}!T\+C\+Pshare\+Client@{T\+C\+Pshare\+Client}}
+\subsubsection[{get\+Remote\+File\+List}]{\setlength{\rightskip}{0pt plus 5cm}void T\+C\+Pshare\+Client.\+get\+Remote\+File\+List (
+\begin{DoxyParamCaption}
+\item[{Socket}]{sock}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classTCPshareClient_a4d9936ebefa607fe1d3d3efef79b5e40}
+
+
+Odbiera plik z lista plików z serwera, interpretuje i wczytuje do pamięci. 
+
+
+\begin{DoxyParams}{Parametry}
+{\em sock} & -\/ gniazdo połączeniowe. \\
+\hline
+\end{DoxyParams}
+
+
+Implementuje \hyperlink{interfacesharedClientMethods_abe920559f62376c8c89c0fb0a5e014bb}{shared\+Client\+Methods}.
+
+\hypertarget{classTCPshareClient_a90c2aa41a958d8e110ee9032577a1d87}{\index{T\+C\+Pshare\+Client@{T\+C\+Pshare\+Client}!show\+Availabe\+Files@{show\+Availabe\+Files}}
+\index{show\+Availabe\+Files@{show\+Availabe\+Files}!T\+C\+Pshare\+Client@{T\+C\+Pshare\+Client}}
+\subsubsection[{show\+Availabe\+Files}]{\setlength{\rightskip}{0pt plus 5cm}void T\+C\+Pshare\+Client.\+show\+Availabe\+Files (
+\begin{DoxyParamCaption}
+\item[{Socket}]{sock}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classTCPshareClient_a90c2aa41a958d8e110ee9032577a1d87}
+
+
+Metoda zestawia pliki dostępne na serwerze z lokalnymi plikami z katalogu c\+:. 
+
+
+\begin{DoxyParams}{Parametry}
+{\em sock} & -\/ gniazdo połączeniowe, które jest przekazywane do metody \hyperlink{classTCPshareClient_a4d9936ebefa607fe1d3d3efef79b5e40}{get\+Remote\+File\+List()}.\\
+\hline
+\end{DoxyParams}
+Uruchamiane są metody wczytania listy plików do statycznych kontenerów\+:
+\begin{DoxyEnumerate}
+\item \hyperlink{classTCPshareClient_a919fae8dbdeda86954c85230283be904}{get\+Local\+File\+List()} -\/ {\itshape local\+File\+List} 
+\item \hyperlink{classTCPshareClient_a4d9936ebefa607fe1d3d3efef79b5e40}{get\+Remote\+File\+List()} -\/ {\itshape remote\+File\+List} Następnie kolekcje są porównywane w ten sposób, że jedna linia odpowiada jednemu plikowi. Dołożone są 2 kolumny wskazujące na identyfikator pliku na serwerze lub w lokalnym katalogu. Brak identyfikatora oznacza brak pliku w danym systemie plików. 
+\end{DoxyEnumerate}\hypertarget{classTCPshareClient_a59c2ec1caa18e5081192925e91f9717e}{\index{T\+C\+Pshare\+Client@{T\+C\+Pshare\+Client}!start\+Service@{start\+Service}}
+\index{start\+Service@{start\+Service}!T\+C\+Pshare\+Client@{T\+C\+Pshare\+Client}}
+\subsubsection[{start\+Service}]{\setlength{\rightskip}{0pt plus 5cm}int T\+C\+Pshare\+Client.\+start\+Service (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}}\label{classTCPshareClient_a59c2ec1caa18e5081192925e91f9717e}
+
+
+Metoda nawiązujaca połączenie i przekazująca połączenie do poniższych metod. 
+
+Tworzone gniazdo {\itshape sock} nie jest atrybutem obiektu dlatego, że byłaby możliwość zamknięcia połączenia w przypadku, gdy na oddzielnym wątku jeszcze dokonuje się download/upload. Gniazdo jest przekazywane i zamykane przez każdą z opcji wykonywanej przez \hyperlink{classTCPshareClient_a33bb90418d922955e2c86ae857e9dcea}{Act\+An\+Option()}. \begin{DoxyReturn}{Zwraca}
+-\/1 w przypadku błędu lub zakończenia aplikacji. 
+\end{DoxyReturn}
+\hypertarget{classTCPshareClient_aa7ac62bdba79edd0a576129ec7758b7c}{\index{T\+C\+Pshare\+Client@{T\+C\+Pshare\+Client}!upload\+File@{upload\+File}}
+\index{upload\+File@{upload\+File}!T\+C\+Pshare\+Client@{T\+C\+Pshare\+Client}}
+\subsubsection[{upload\+File}]{\setlength{\rightskip}{0pt plus 5cm}void T\+C\+Pshare\+Client.\+upload\+File (
+\begin{DoxyParamCaption}
+\item[{String}]{filename, }
+\item[{Socket}]{sock}
+\end{DoxyParamCaption}
+) throws I\+O\+Exception\hspace{0.3cm}{\ttfamily [inline]}}}\label{classTCPshareClient_aa7ac62bdba79edd0a576129ec7758b7c}
+
+
+Wysyła plik {\itshape filename} przez gniazdo sock. 
+
+
+\begin{DoxyParams}{Parametry}
+{\em filename} & -\/ nazwa wysyłanego plik. \\
+\hline
+{\em sock} & -\/ gniazdo połączeniowe. \\
+\hline
+\end{DoxyParams}
+
+
+Implementuje \hyperlink{interfacesharedClientMethods_a7c5477fad92bfc52f51afbfdc167615b}{shared\+Client\+Methods}.
+
+
+
+Dokumentacja dla tej klasy została wygenerowana z pliku\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{TCPshareClient_8java}{T\+C\+Pshare\+Client.\+java}\end{DoxyCompactItemize}
